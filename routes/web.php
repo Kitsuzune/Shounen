@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Homepage');
 });
+
+
+Route::get('upload', function () {
+    return view('formupload');
+});
+
+
+Route::post('/upload',[PostController::class,'store']);
+
