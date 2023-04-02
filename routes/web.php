@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -25,4 +26,13 @@ Route::get('upload', function () {
 
 
 Route::post('/upload',[PostController::class,'store']);
+
+
+Route::get('login', function () {
+    return view('login');
+})->middleware('guest');
+
+Route::post('/register',[RegisterController::class,'store']);
+Route::post('/login',[RegisterController::class,'index']);
+Route::post('/logout',[RegisterController::class,'logout']);
 

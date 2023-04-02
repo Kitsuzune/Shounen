@@ -44,10 +44,11 @@ class PostController extends Controller
         $validasi = $request->validate([
             'title' => 'required|max:255',
             'deskripsi' => 'required|max:255',
-            'image' => 'image|file|max:5000'
+            'image' => 'image|file|max:5000|required'
         ]);
 
-        
+       
+
         if($request->file('image')){
             $validasi['image'] = $request->file('image')->store('post-image');
         }
@@ -59,11 +60,9 @@ class PostController extends Controller
         $post->deskripsi = $request->deskripsi;
         $post->image = $validasi['image'];
 
-        if($validasi){
-            $post->save();
-            Session::flash('hasil','berhasil');
-
-        }
+        
+        $post->save();
+        Session::flash('hasil','berhasil');
         
         // post::create($validasi);
 
