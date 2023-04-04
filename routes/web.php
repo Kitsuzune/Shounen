@@ -22,10 +22,17 @@ Route::get('/', function () {
 
 Route::get('upload', function () {
     return view('formupload');
-});
+})->middleware('auth');
+
+Route::get('/user/post',[PostController::class,'tampil']);
+
 
 
 Route::post('/upload',[PostController::class,'store']);
+Route::get('/upload/slug',[PostController::class,'buatslug'])->middleware('auth');
+Route::post('/user/post/{post:slug}/delete',[PostController::class,'destroy'])->middleware('auth');
+Route::get('/user/post/{post:slug}/edit',[PostController::class,'edittampil'])->middleware('auth');
+Route::post('/user/post/{post:slug}/edit',[PostController::class,'update'])->middleware('auth');
 
 
 Route::get('login', function () {
@@ -35,4 +42,6 @@ Route::get('login', function () {
 Route::post('/register',[RegisterController::class,'store']);
 Route::post('/login',[RegisterController::class,'index']);
 Route::post('/logout',[RegisterController::class,'logout']);
+
+
 

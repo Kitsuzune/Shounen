@@ -2,16 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Events\Validated;
+use Session;
+use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Models\Post;
 use Illuminate\Support\Facades\Redirect;
-use Session;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 
 
 class PostController extends Controller
 {
+
+    public function tampil(){
+        $mypost = auth()->user()->post()->get();
+        return view('mypost',[
+            'posts' => $mypost
+        ]);
+    }
+
+    public function edittampil(Post $post){
+        return view('editpost',[
+            'post' => $post
+        ]);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +62,8 @@ class PostController extends Controller
         $validasi = $request->validate([
             'title' => 'required|max:255',
             'deskripsi' => 'required|max:255',
-            'image' => 'image|file|max:5000|required'
+            'image' => 'image|file|max:5000|required',
+            'slug' => 'required|unique:posts'
         ]);
 
        
@@ -59,6 +78,8 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->deskripsi = $request->deskripsi;
         $post->image = $validasi['image'];
+        $post->slug = $request->slug;
+        $post->user_id = auth()->user()->id;
 
         
         $post->save();
@@ -104,7 +125,24 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $rules = [
+            'title' => 'required|max:255',
+            'deskripsi' => 'required|max:255',
+        ];
+
+        if($request->slug != $post->slug){
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validasi = $request->validate($rules);
+
+        $validasi['user_id'] = auth()->user()->id;
+
+        Post::where('id',$post->id)->update($validasi);
+
+        Session::flash('hasil','berhasil update');
+
+        return redirect('/user/post');
     }
 
     /**
@@ -115,6 +153,15 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+
+        return redirect()->back()->with('hasil','berhasil');
+    }
+
+    public function buatslug(Request $request){
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+        return response()->json(['slug'=>$slug]);
     }
 }
+
+

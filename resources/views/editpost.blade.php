@@ -11,42 +11,37 @@
         <div class="container">
             
             <div class="row align-items-center">
-                <form method="POST" enctype="multipart/form-data" action="/upload">
+                <img src="{{ asset('storage/'. $post->image) }}" alt="{{ $post->title }}" class="gallery-image" style="max-height: 250px; max-width: 250px">
+
+                <form method="POST" enctype="multipart/form-data" action="/user/post/{{ $post->slug }}/edit">
                     @csrf
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Title</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title">
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title" value="{{ $post->title }}"> 
                     @error('title')
                     <div class="text-danger">{{ $message }}</div>   
                     @enderror                   
                     </div>
                     <div class="mb-3">
                       <label for="slug" class="form-label">Slug</label>
-                      <input type="text" class="form-control" id="slug" aria-describedby="emailHelp" name="slug" >                 
+                      <input type="text" class="form-control" id="slug" aria-describedby="emailHelp" name="slug" value="{{ $post->slug }}">                 
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">deskripsi</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" name="deskripsi">
+                      <input type="text" class="form-control" id="exampleInputPassword1" name="deskripsi" value="{{ $post->deskripsi }}">
                       @error('deskripsi')
                       <div class="text-danger">{{ $message }}</div>   
                       @enderror 
                     </div>
                   
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">UP gambar</label>
-                        <input class="form-control" type="file" id="formFile" name="image">
-                        @error('image')
-                      <div class="text-danger">{{ $message }}</div>   
-                      @enderror 
-                      </div>
+                    
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
             </div>
           </div>
 
           @if(Session::has('hasil'))
-
-          berhasil
+          berhasil update
 
           @endif
    
