@@ -11,6 +11,8 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Redirect;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Pagination\Paginator;
+
 
 
 
@@ -18,7 +20,9 @@ class PostController extends Controller
 {
 
     public function tampil(){
-        $mypost = auth()->user()->post()->get();
+        Paginator::useBootstrap();
+
+        $mypost = auth()->user()->post()->paginate(9);
         return view('mypost',[
             'posts' => $mypost
         ]);
@@ -37,7 +41,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        Paginator::useBootstrap();
+
+        return view('Homepage')->with([
+            'posts' => Post::paginate(9)
+        ]);
     }
 
     /**
@@ -161,6 +169,20 @@ class PostController extends Controller
     public function buatslug(Request $request){
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
         return response()->json(['slug'=>$slug]);
+    }
+
+    public function search(Request $request)
+    {
+        Paginator::useBootstrap();
+
+        $query = $request->search;
+
+        $data = Post::where('title','like',"%$query%")
+                    ->orWhere('deskripsi', 'like', "%$query%")
+                    ->paginate(9);
+
+                    return view('Homepage', ['posts' => $data]);
+
     }
 }
 

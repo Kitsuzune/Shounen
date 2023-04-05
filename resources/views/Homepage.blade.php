@@ -1,4 +1,3 @@
-@php($posts =  App\Models\Post::all())
 
 <!DOCTYPE html>
 <html lang="en">
@@ -168,6 +167,11 @@
                     @csrf
                 <button type="submit">logout</button>
                 </form>
+
+                <form action="/search" method="GET">
+                  <input type="text" name="search" placeholder="Search...">
+                  <button type="submit">Search</button>
+              </form>
                 {{-- <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -212,56 +216,6 @@
       </nav>
     @endauth
     
-   
-    
-    
-        {{-- <div class="container">
-    
-            <div class="gallery">
-    
-            
-                @foreach($posts as $post)
-       
-                    <div class="gallery-item picture-container" tabindex="0" data-toggle="modal" data-target="#pictureModal" data-image="{{ asset('storage/'. $post->image) }}">
-                        <img src="{{ asset('storage/'. $post->image) }}" alt="Picture" class="gallery-image" style="max-height: 250px;">
-                    </div>
-                    
-               
-                    <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="pictureModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-body col-md-6" >
-                                    <img src="" alt="Picture" class="img-fluid" id="pictureModalImage" style="max-height: 780px;">
-                                </div>
-                                <div class="col-md-6">
-                                    <h4>{{ $post->title }}</h4>
-                                    <p>{{ $post->deskripsi }}</p>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-    
-               @endforeach
-    
-            </div>
-            <!-- End of gallery -->
-    
-            <div class="loader"></div>
-    
-        </div>
-
-       
-        <!-- Image -->
-
-        <script>
-            $('.picture-container').on('click', function() {
-                var image = $(this).data('image'); // Get the image path from data-image attribute
-                $('#pictureModalImage').attr('src', image); // Set the image source in the modal
-            });
-        </script> --}}
 
         <div class="container">
 
@@ -274,7 +228,9 @@
                 </div>
                 @endforeach
             </div>
-        
+            {{ $posts->links() }}
+
+            
             <!-- Modal -->
             @foreach($posts as $post)
             <div class="modal fade" id="pictureModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="pictureModalLabel{{ $post->id }}" aria-hidden="true">
@@ -299,7 +255,7 @@
             @endforeach
         
         </div>
-        
+
         <!-- Script -->
         <script>
             $('.picture-container').on('click', function() {

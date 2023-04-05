@@ -15,9 +15,12 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('Homepage');
-});
+
+
+Route::get('/',[PostController::class,'index']);
+Route::get('/search',[PostController::class,'search']);
+
+
 
 
 Route::get('upload', function () {
@@ -33,6 +36,8 @@ Route::get('/upload/slug',[PostController::class,'buatslug'])->middleware('auth'
 Route::post('/user/post/{post:slug}/delete',[PostController::class,'destroy'])->middleware('auth');
 Route::get('/user/post/{post:slug}/edit',[PostController::class,'edittampil'])->middleware('auth');
 Route::post('/user/post/{post:slug}/edit',[PostController::class,'update'])->middleware('auth');
+
+
 
 
 Route::get('login', function () {
