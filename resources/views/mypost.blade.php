@@ -8,13 +8,25 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('/css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/flickity.css') }}">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <style>
-        :root {
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+    --font-main: "Plus Jakarta Sans";
+    --border-radius: 32px;
     font-size: 10px;
     }
 
+    body {
+      font-family: var(--font-main);
+      overflow-x: hidden;
+    }
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -135,12 +147,70 @@
   max-height: 580px; /* Set the maximum height for the text container */
 }
 
+.containerinti {
+    height: 750px;
+    background: #fefefe;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px 10px 10px 10px;
+    margin: 20px auto;
+    width: 90%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    }
 
 
     </style>
 </head>
 <body>
-<div class="container">
+    <header>
+        <div class="logo">
+            <p>Welcome Back {{ auth()->user()->first_name }}</p>
+        </div>
+        <input type="checkbox" id="nav_check" hidden>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="">
+            </div>
+            <ul>
+                <li>
+                    <a href="\">Home</a>
+                </li>
+                
+                <li>
+                    <a href="#" class="active">My Post</a>
+                </li>
+  
+                <li>
+                    <a href="\upload">Upload</a>
+                </li>
+  
+                <li>
+                  <form action="/search" method="GET">
+                    <input type="text" name="search" placeholder="Search...">
+                    <button type="submit">Search</button>
+                  </form>
+                </li>
+  
+                <li>
+                    <form action="/logout" method="post">
+                      @csrf
+                      <button type="submit">logout</button>
+                    </form>
+                    
+                </li>
+  
+            </ul>
+        </nav>
+        <label for="nav_check" class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </label>
+    </header>
+<div class="containerinti">
 
 <div class="row">
     @foreach($posts as $post)

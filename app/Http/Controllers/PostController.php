@@ -181,7 +181,7 @@ class PostController extends Controller
                     ->orWhere('deskripsi', 'like', "%$query%")
                     ->paginate(9);
 
-                    return view('Homepage', ['posts' => $data]);
+                    return view('search', ['posts' => $data]);
 
     }
 }
