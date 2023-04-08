@@ -201,7 +201,7 @@
           </div>
           <ul>
               <li>
-                  <a href="#" class="active">Home</a>
+                  <a href="\" class="active">Home</a>
               </li>
               
               <li>
@@ -335,14 +335,6 @@
     
 
         <div class="containerinti">
-          <br><div class="h1 text-center" > 
-            <h1 class="display-3">Latest Event</h1> 
-            <br>
-            <div class="gallery1 js-flickity" data-flickity-options='{ "wrapAround": true }'>
-            <div class="gallery1-cell"><img class="banner1" src="{{ asset('img/banner1.png') }}" alt=""></div>
-            </div>
-            
-          </div> <br>
           <br><div class="h1 text-center" > <h1 class="display-3">Explore Your Idea</h1> </div> <br>
             <div class="row">
                 @foreach($posts as $post)

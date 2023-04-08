@@ -21,10 +21,16 @@ Route::get('/',[PostController::class,'index']);
 Route::get('/search',[PostController::class,'search']);
 
 
+Route::get('/up2', function () {
+    return view('formupload2');
+});
 
+Route::get('/up1', function () {
+    return view('formupload');
+});
 
 Route::get('upload', function () {
-    return view('formupload');
+    return view('formupload2');
 })->middleware('auth');
 
 Route::get('/user/post',[PostController::class,'tampil']);
