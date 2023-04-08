@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Upload</title>
     <link rel="stylesheet" href="{{ asset('/css/form.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ asset('/css/navfo.css') }}">
@@ -14,7 +14,7 @@
 <body>
   <header>
     <div class="logo">
-        <p>Welcome Back {{ auth()->user()->first_name }}</p>
+        <p>Welcome Back {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
     </div>
     <input type="checkbox" id="nav_check" hidden>
     <nav>
@@ -87,13 +87,13 @@
       <form method="POST" enctype="multipart/form-data" action="/upload">
         @csrf
         <p>Title</p>
-        <input type="text" class="email input" name="title" placeholder="あなたの肩書は何ですか...?">
+        <input type="text" class="email input" name="title" placeholder="あなたの肩書は何ですか...?" id="email">
         @error('title')
         <div class="text-danger">{{ $message }}</div>   
         @enderror    
 
         <p>Slug</p>
-        <input type="text" class="email input" name="slug" placeholder="あなたのタグは何ですか...?">
+        <input type="text" class="email input" name="slug" placeholder="あなたのタグは何ですか...?" id="slug">
         
         <p>Deskripsi</p>
         <input type="text" class="email input" name="deskripsi" placeholder="あなたの説明は何ですか...?">
@@ -125,5 +125,16 @@
     </div>
 
     <script src="{{ asset('/js/form.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script>
+
+      const title = document.querySelector('#email');
+      const slug = document.querySelector('#slug')
+      
+      title.addEventListener('change', function() {
+        fetch('/upload/slug?title=' + title.value).then(response => response.json()).then(data => slug.value = data.slug)
+      });
+
+      </script>
 </body>
 </html>

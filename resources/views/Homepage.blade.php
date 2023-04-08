@@ -192,7 +192,7 @@
     @auth
     <header>
       <div class="logo">
-          <p>Welcome Back {{ auth()->user()->first_name }}</p>
+          <p>Welcome Back {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
       </div>
       <input type="checkbox" id="nav_check" hidden>
       <nav>
