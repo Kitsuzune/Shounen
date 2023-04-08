@@ -70,7 +70,7 @@ class PostController extends Controller
         $validasi = $request->validate([
             'title' => 'required|max:255',
             'deskripsi' => 'required|max:255',
-            'image' => 'image|file|max:5000|required',
+            'image' => 'required|image|file|mimes:jpeg,jpg|max:5120',
             'slug' => 'required|unique:posts'
         ]);
 
