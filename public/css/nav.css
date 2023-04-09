@@ -60,6 +60,8 @@ nav ul li a:hover {
 nav ul li a.active {
     color: #fff;
     background: #675cff;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 nav ul li form:hover {

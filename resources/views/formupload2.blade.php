@@ -107,7 +107,7 @@
         <div class="text-danger">{{ $message }}</div>   
         @enderror 
 
-        <div class="button"> <button type="submit" class="btn btn-primary">
+        <div class="button"> <button class="submit-button" type="submit">
             Submit
             </button>
           </div>

@@ -37,7 +37,7 @@
     }
 
 .containerinti {
-    height: 1200px;
+  height: auto;
     background: #fefefe;
     align-items: center;
     justify-content: space-between;
@@ -48,6 +48,8 @@
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    box-sizing: border-box;
+    padding-bottom: 20px;
     }
 
 .gallery {

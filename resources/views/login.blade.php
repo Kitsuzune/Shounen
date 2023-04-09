@@ -26,6 +26,7 @@
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 20px 20px 20px 20px;
 }
 .form input {
   font-family: "Roboto", sans-serif;
@@ -37,6 +38,7 @@
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: 10px 10px 10px 10px;
 }
 .form button {
   font-family: "Roboto", sans-serif;
@@ -51,6 +53,7 @@
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  border-radius: 10px 10px 10px 10px;
 }
 .form button:hover,
 .form button:active,
@@ -105,12 +108,8 @@
 }
 body {
   background: #76b852; /* fallback for old browsers */
-  background: rgb(141, 194, 111);
-  background: linear-gradient(
-    90deg,
-    rgba(141, 194, 111, 1) 0%,
-    rgba(118, 184, 82, 1) 50%
-  );
+  background: #e3e9f7;
+  background: linear-gradient(to right, #e3e9f7, #e3e9f7);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

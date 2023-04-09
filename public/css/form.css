@@ -343,7 +343,7 @@ p{
 }
 
 .button{
-  background-color:#78d9ad;
+  background-color:transparent;
   color:white;
   text-align:center;
   margin-top:20px;
@@ -352,10 +352,24 @@ p{
   transition:all .3s ease;
 }
 
-.button:hover{
+
+.submit-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white; 
+  padding: 10px 100px;
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  border-radius: 5px; 
+  justify-content: center;
+}
+
+/* .button:hover{
   background-color:#5aaa84;
   transition:all .3s ease;
-}
+} */
 
 .sleep-eye{
   height:5px;

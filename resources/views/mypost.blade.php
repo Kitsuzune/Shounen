@@ -131,6 +131,7 @@
   justify-content: center;
   height: 800px; /* Set the fixed height here */
 }
+
 .modal-body {
     display: flex;
     align-items: center;
@@ -148,7 +149,7 @@
 }
 
 .containerinti {
-    height: 750px;
+    height: auto;
     background: #fefefe;
     align-items: center;
     justify-content: space-between;
@@ -159,9 +160,30 @@
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    box-sizing: border-box;
+    padding-bottom: 20px;
     }
 
-
+    .rebutton {
+        background-color: #4CAF50;
+        color: white;
+        width: 80px;
+        height: 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      /* Button hover effect */
+      .rebutton:hover {
+        background-color: #3e8e41;
+      }
     </style>
 </head>
 <body>
@@ -241,11 +263,11 @@
                     <div>
                         <form action="/user/post/{{ $post->slug }}/delete" method="post">
                             @csrf
-                        <button type="submit" onclick="return confirm('yakin?')">hapus</button>
+                        <button class="rebutton" type="submit" onclick="return confirm('yakin?')">hapus</button>
                         </form>
                     </div>
                     <div>
-                        <a href="/user/post/{{ $post->slug }}/edit">edit</a>
+                        <a href="/user/post/{{ $post->slug }}/edit" class="rebutton">edit</a>
                     </div>
                 </div>
               
