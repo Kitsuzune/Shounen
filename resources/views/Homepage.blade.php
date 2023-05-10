@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Shounen</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -345,6 +345,19 @@
             </div>
             
           </div> <br>
+
+          <div class="containerinti"><br>
+            <div class="h1 text-center" > 
+              <h1 class="display-3">Shounen Data</h1> 
+              <br>
+              <div class="d-flex justify-content-center">
+                {!! $TotalUser->container() !!}
+                {!! $TotalUser2->container() !!}
+              </div>
+              
+            </div> <br>
+
+
           <br><div class="h1 text-center" > <h1 class="display-3">Explore Your Idea</h1> </div> <br>
             <div class="row">
                 @foreach($posts as $post)
@@ -396,6 +409,13 @@
         
 
         <!-- End of container -->
+
+        <script src="{{ $TotalUser->cdn() }}"></script>
+        <script src="{{ $TotalUser2->cdn() }}"></script>
+
+        {{ $TotalUser->script() }}
+        {{ $TotalUser2->script() }}
+
 
 </body>
 </html>

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Auth\Events\Validated;
 use Session;
 use App\Models\Post;
+use App\Charts\TotalUser;
+use App\Charts\TotalUser2;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Auth\Events\Validated;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Redirect;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Pagination\Paginator;
 
 
 
@@ -39,12 +41,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TotalUser $TotalUser, TotalUser2 $TotalUser2)
     {
         Paginator::useBootstrap();
 
         return view('Homepage')->with([
-            'posts' => Post::paginate(9)
+            'posts' => Post::paginate(9),
+            'TotalUser' => $TotalUser->build(),
+            'TotalUser2' => $TotalUser2->build(),
         ]);
     }
 
@@ -151,6 +155,8 @@ class PostController extends Controller
         Session::flash('hasil','berhasil update');
 
         return redirect('/user/post');
+
+        
     }
 
     /**
