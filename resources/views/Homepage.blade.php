@@ -415,6 +415,7 @@
 
         {{ $TotalUser->script() }}
         {{ $TotalUser2->script() }}
+        
 
 
 </body>
