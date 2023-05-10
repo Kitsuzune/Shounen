@@ -55,41 +55,66 @@ class TotalUser
         //     $labels[] = $key;
         // }
 
-        $now = Carbon::now()->format('Y-m-d');
-        $yesterday = Carbon::yesterday()->format('Y-m-d');
-        $dayafteryes = Carbon::now()->subdays(2)->format('Y-m-d');
-        $dayafteryes2 = Carbon::now()->subdays(3)->format('Y-m-d');
-        $dayafteryes3 = Carbon::now()->subdays(4)->format('Y-m-d');
-        $dayafteryes4 = Carbon::now()->subdays(5)->format('Y-m-d');
-        $dayafteryes5 = Carbon::now()->subdays(6)->format('Y-m-d');
+        // $now = Carbon::now()->format('Y-m-d');
+        // $yesterday = Carbon::yesterday()->format('Y-m-d');
+        // $dayafteryes = Carbon::now()->subdays(2)->format('Y-m-d');
+        // $dayafteryes2 = Carbon::now()->subdays(3)->format('Y-m-d');
+        // $dayafteryes3 = Carbon::now()->subdays(4)->format('Y-m-d');
+        // $dayafteryes4 = Carbon::now()->subdays(5)->format('Y-m-d');
+        // $dayafteryes5 = Carbon::now()->subdays(6)->format('Y-m-d');
 
-        $userreg = User::where('created_at','LIKE',$now.'%')->count();
-        $userregyesterday = User::where('created_at','LIKE',$yesterday.'%')->count();
-        $userregdayafteryes = User::where('created_at','LIKE',$dayafteryes.'%')->count();
-        $userregdayafteryes2 = User::where('created_at','LIKE',$dayafteryes2.'%')->count();
-        $userregdayafteryes3 = User::where('created_at','LIKE',$dayafteryes3.'%')->count();
-        $userregdayafteryes4 = User::where('created_at','LIKE',$dayafteryes4.'%')->count();
-        $userregdayafteryes5 = User::where('created_at','LIKE',$dayafteryes5.'%')->count();
+        // $userreg = User::where('created_at','LIKE',$now.'%')->count();
+        // $userregyesterday = User::where('created_at','LIKE',$yesterday.'%')->count();
+        // $userregdayafteryes = User::where('created_at','LIKE',$dayafteryes.'%')->count();
+        // $userregdayafteryes2 = User::where('created_at','LIKE',$dayafteryes2.'%')->count();
+        // $userregdayafteryes3 = User::where('created_at','LIKE',$dayafteryes3.'%')->count();
+        // $userregdayafteryes4 = User::where('created_at','LIKE',$dayafteryes4.'%')->count();
+        // $userregdayafteryes5 = User::where('created_at','LIKE',$dayafteryes5.'%')->count();
 
-        $postreg = post::where('created_at','LIKE',$now.'%')->count();
-        $postregyesterday = post::where('created_at','LIKE',$yesterday.'%')->count();
-        $postregdayafteryes = post::where('created_at','LIKE',$dayafteryes.'%')->count();
-        $postregdayafteryes2 = post::where('created_at','LIKE',$dayafteryes2.'%')->count();
-        $postregdayafteryes3 = post::where('created_at','LIKE',$dayafteryes3.'%')->count();
-        $postregdayafteryes4 = post::where('created_at','LIKE',$dayafteryes4.'%')->count();
-        $postregdayafteryes5 = post::where('created_at','LIKE',$dayafteryes5.'%')->count();
+        // $postreg = post::where('created_at','LIKE',$now.'%')->count();
+        // $postregyesterday = post::where('created_at','LIKE',$yesterday.'%')->count();
+        // $postregdayafteryes = post::where('created_at','LIKE',$dayafteryes.'%')->count();
+        // $postregdayafteryes2 = post::where('created_at','LIKE',$dayafteryes2.'%')->count();
+        // $postregdayafteryes3 = post::where('created_at','LIKE',$dayafteryes3.'%')->count();
+        // $postregdayafteryes4 = post::where('created_at','LIKE',$dayafteryes4.'%')->count();
+        // $postregdayafteryes5 = post::where('created_at','LIKE',$dayafteryes5.'%')->count();
 
 
 
 
     
-        return $this->chart->lineChart()
-            ->setTitle('User and Post Registrations in the Past Months')
-            ->setSubtitle('User and Post Registrations')
-            ->addData('User Registrations', [$userregdayafteryes5,$userregdayafteryes4,$userregdayafteryes3,$userregdayafteryes2,$userregdayafteryes,$userregyesterday, $userreg])
-            ->addData('Post Registrations', [$postregdayafteryes5,$postregdayafteryes4,$postregdayafteryes3,$postregdayafteryes2,$postregdayafteryes,$postregyesterday, $postreg])
-            ->setXAxis([$dayafteryes5,$dayafteryes4,$dayafteryes3,$dayafteryes2,$dayafteryes, $yesterday, $now])
-            ->setWidth(600)
-            ->setHeight(600);
+        // return $this->chart->lineChart()
+        //     ->setTitle('User and Post Registrations in the Past Months')
+        //     ->setSubtitle('User and Post Registrations')
+        //     ->addData('User Registrations', [$userregdayafteryes5,$userregdayafteryes4,$userregdayafteryes3,$userregdayafteryes2,$userregdayafteryes,$userregyesterday, $userreg])
+        //     ->addData('Post Registrations', [$postregdayafteryes5,$postregdayafteryes4,$postregdayafteryes3,$postregdayafteryes2,$postregdayafteryes,$postregyesterday, $postreg])
+        //     ->setXAxis([$dayafteryes5,$dayafteryes4,$dayafteryes3,$dayafteryes2,$dayafteryes, $yesterday, $now])
+        //     ->setWidth(600)
+        //     ->setHeight(600);
+
+
+
+            $now = Carbon::now()->format('Y-m-d');
+            $days = [];
+            $userRegistrations = [];
+            $postRegistrations = [];
+        
+            // Query user registrations for the last 7 days
+            for ($i = 0; $i < 7; $i++) {
+                $day = Carbon::now()->subdays($i)->format('Y-m-d');
+                $days[] = $day;
+                $userRegistrations[] = User::where('created_at', 'LIKE', $day.'%')->count();
+                $postRegistrations[] = Post::where('created_at', 'LIKE', $day.'%')->count();
+            }
+        
+            return $this->chart->lineChart()
+                ->setTitle('User and Post Registrations in the Past 7 Days')
+                ->setSubtitle('User and Post Registrations')
+                ->addData('User Registrations', array_reverse($userRegistrations))
+                ->addData('Post Registrations', array_reverse($postRegistrations))
+                ->setXAxis(array_reverse($days))
+                ->setWidth(600)
+                ->setHeight(600);
+            
     } 
 }
