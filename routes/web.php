@@ -19,7 +19,7 @@ use App\Http\Controllers\PostController;
 
 Route::get('/',[PostController::class,'index']);
 Route::get('/search',[PostController::class,'search']);
-
+Route::get('/home',[PostController::class,'index']);
 
 Route::get('/up2', function () {
     return view('formupload2');

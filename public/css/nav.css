@@ -131,3 +131,83 @@ nav ul li form.active {
         display: block;
     }
 }
+
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  footer {
+    line-height: 1.5;
+    width: 90%;
+    height: auto;
+    background: #fefefe;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px 20px 0 0;
+    margin: 0 auto;
+  }
+  footer a {
+    text-decoration: none;
+    color: black;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .ft-title {
+    color: black;
+    font-size: 2.5rem;
+    padding-bottom: 0.625rem;
+    padding-top: 0.5;
+  }
+  /* Sticks footer to bottom */
+
+  /* Footer main */
+  .ft-main {
+    padding: 1.25rem 1.875rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  @media only screen and (min-width: 29.8125rem /* 477px */) {
+    .ft-main {
+      justify-content: space-evenly;
+    }
+  }
+  @media only screen and (min-width: 77.5rem /* 1240px */) {
+    .ft-main {
+      justify-content: space-evenly;
+    }
+  }
+  .ft-main-item {
+    padding: 1.25rem;
+    min-width: 12.5rem;
+  }
+  
+  
+  /* Footer legal */
+  .ft-legal {
+    padding: 0.9375rem 1.875rem;
+    background-color: #333;
+    color: wheat;
+  }
+  .ft-legal-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .ft-legal-list li {
+    margin: 0.125rem 0.625rem;
+    white-space: nowrap;
+    color: wheat;
+  }
+  .ft-legal-list li a {
+    margin: 0.125rem 0.625rem;
+    white-space: nowrap;
+    color: wheat;
+  }
+  /* one before the last child */
+  .ft-legal-list li:nth-last-child(2) {
+      flex: 1;
+  }
