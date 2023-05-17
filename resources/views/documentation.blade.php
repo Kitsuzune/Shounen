@@ -243,41 +243,7 @@
       </label>
   </header>
 
-    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="user\post">My post</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="\upload">Upload</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Welcome Back {{ auth()->user()->first_name }}
-                </a>
-                <form action="/logout" method="post">
-                    @csrf
-                <button type="submit">logout</button>
-                </form>
 
-                <form action="/search" method="GET">
-                  <input type="text" name="search" placeholder="Search...">
-                  <button type="submit">Search</button>
-              </form>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav> --}}
     @else
     <header>
       <div class="logo">
@@ -316,102 +282,35 @@
           <div class="line"></div>
       </label>
   </header>
-    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/login" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  login
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav> --}}
     @endauth
     
 
-        <div class="containerinti">
-          <br><div class="h1 text-center" > 
-            <h1 class="display-3">Latest Event</h1> 
-            <br>
-            <div class="gallery1 js-flickity" data-flickity-options='{ "wrapAround": true }'>
-            <div class="gallery1-cell"><img class="banner1" src="{{ asset('img/banner1.png') }}" alt=""></div>
-            </div>
+ <br>
+
+          <div class="containerinti"><br>
+            <div class="h1 text-center" > 
+              <h1 class="display-3">Shounen Data</h1> 
+              <br>
+              <div class="d-flex justify-content-center">
+                {!! $TotalUser->container() !!}
+                {!! $TotalUser2->container() !!}
+              </div>
+              <br>
+              <div>
+                <a href="/export" class="btn btn-primary btn-lg"> Export Data </a>
+              </div>            
             
-          </div> <br>
-
-
-
-
-          <br><div class="h1 text-center" > <h1 class="display-3">Explore Your Idea</h1> </div> <br>
-            <div class="row">
-                @foreach($posts as $post)
-                <div class="col-md-4 mb-3">
-                    <div class="gallery-item picture-container" tabindex="0" data-toggle="modal" data-target="#pictureModal{{ $post->id }}" data-image="{{ asset('storage/'. $post->image) }}">
-                        <img src="{{ asset('storage/'. $post->image) }}" alt="{{ $post->title }}" class="gallery-image" style="max-height: 250px;">
-                    </div>
-                </div>
-                @endforeach
             </div>
-            {{ $posts->links() }}
+        </div>
+    </div> <br>
 
-            
-            <!-- Modal -->
-            @foreach($posts as $post)
-            <div class="modal fade" id="pictureModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="pictureModalLabel{{ $post->id }}" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="modal-body row">
-                            <div class="col-md-8">
-                                <img src="{{ asset('storage/'. $post->image) }}" alt="{{ $post->title }}" class="img-fluid" style="max-height: 100%; max-width: 100%;">
-                            </div>
-                            <div class="col-md-4"> 
-                                <h3>{{ $post->title }}</h3>
-                                <h5>{{ $post->deskripsi }}</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            @endforeach
+          </div>
+          
         
         </div>
         </div>
+
         <footer>
-          {{-- <div class="footer-left">
-              <h3>Shounen</h3>
-              <ul>
-                <li><a href="#">Docs</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">eBooks</a></li>
-                <li><a href="#">Webinars</a></li>
-              </ul>
-          </div>
-          <div class="footer-right">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo iste corrupti doloribus odio sed!</p>
-        </div>
-          <div class="footer-bottom">
-              <p>copyright &copy;2020 codeOpacity. designed by <span>nethunt</span></p>
-          </div> --}}
           <section class="ft-main">
             <div class="ft-main-item">
               <h2 class="ft-title">Shounen　ー　少年</h2>
@@ -452,19 +351,6 @@
             </ul>
           </section>
       </footer>
-        <!-- Script -->
-        <script>
-            $('.picture-container').on('click', function() {
-                var image = $(this).data('image'); // Get the image path from data-image attribute
-                var modalId = $(this).data('target'); // Get the modal ID from data-target attribute
-                $(modalId).find('img').attr('src', image); // Set the image source in the modal
-            });
-        </script>
-        
-      
-        
-
-        <!-- End of container -->
 
         <script src="{{ $TotalUser->cdn() }}"></script>
         <script src="{{ $TotalUser2->cdn() }}"></script>

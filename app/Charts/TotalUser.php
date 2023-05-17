@@ -3,7 +3,7 @@
 namespace App\Charts;
 
 use Carbon\Carbon;
-use App\Models\post;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
