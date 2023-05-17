@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Charts\TotalUser;
 use App\Charts\TotalUser2;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Routing\Controller;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Auth\Events\Validated;
@@ -50,6 +51,27 @@ class PostController extends Controller
             'TotalUser' => $TotalUser->build(),
             'TotalUser2' => $TotalUser2->build(),
         ]);
+    }
+
+    public function docs(TotalUser $TotalUser, TotalUser2 $TotalUser2)
+    {
+        Paginator::useBootstrap();
+
+        return view('documentation')->with([
+            'TotalUser' => $TotalUser->build(),
+            'TotalUser2' => $TotalUser2->build(),
+        ]);
+    }
+
+    public function export(TotalUser $TotalUser, TotalUser2 $TotalUser2){
+        $TotalUser = $TotalUser->build();
+        $TotalUser2 = $TotalUser2->build();
+        $pdf = PDF::loadView('export', compact('TotalUser','TotalUser2'));
+        return $pdf->with([
+            'TotalUser' => $TotalUser->build(),
+            'TotalUser2' => $TotalUser2->build(),
+        ])->download('laporan-user.pdf');
+
     }
 
     /**

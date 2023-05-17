@@ -4,6 +4,7 @@ use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,7 @@ use App\Http\Controllers\PostController;
 Route::get('/',[PostController::class,'index']);
 Route::get('/search',[PostController::class,'search']);
 Route::get('/home',[PostController::class,'index']);
+Route::get('/docs',[PostController::class,'docs']);
 
 Route::get('/up2', function () {
     return view('formupload2');
@@ -34,6 +36,8 @@ Route::get('upload', function () {
 })->middleware('auth');
 
 Route::get('/user/post',[PostController::class,'tampil']);
+
+Route::get('/export',[PostController::class,'export']);
 
 
 
