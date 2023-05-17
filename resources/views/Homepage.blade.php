@@ -204,11 +204,11 @@
           </div>
           <ul>
               <li>
-                  <a href="#" class="active">Home</a>
+                  <a href="\" class="active">Home</a>
               </li>
               
               <li>
-                <a href="user\post">Docs</a>
+                <a href="\docs">Docs</a>
               </li>
 
               <li>

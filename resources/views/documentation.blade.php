@@ -204,11 +204,11 @@
           </div>
           <ul>
               <li>
-                  <a href="#" class="active">Home</a>
+                  <a href="\">Home</a>
               </li>
               
               <li>
-                <a href="user\post">Docs</a>
+                <a href="\docs"  class="active">Docs</a>
               </li>
 
               <li>
@@ -256,11 +256,11 @@
           </div>
           <ul>
               <li>
-                  <a href="#" class="active">Home</a>
+                  <a href="#" >Home</a>
               </li>
 
               <li>
-                <a href="/docs">Docs</a>
+                <a href="/docs" class="active">Docs</a>
               </li>
 
               <li>
@@ -284,7 +284,8 @@
   </header>
     @endauth
     
-
+    @php( $user = auth()->user())
+    
  <br>
 
           <div class="containerinti"><br>
@@ -292,15 +293,48 @@
               <h1 class="display-3">Shounen Data</h1> 
               <br>
               <div class="d-flex justify-content-center">
-                {!! $TotalUser->container() !!}
-                {!! $TotalUser2->container() !!}
+                {!! $totalUser->container() !!}
+                {!! $totalUser2->container() !!}
               </div>
               <br>
               <div>
-                <a href="/export" class="btn btn-primary btn-lg"> Export Data </a>
+                {{-- <a href="/export" class="btn btn-primary btn-lg"> Export Data </a> --}}
               </div>            
             
             </div>
+            @auth
+            <div class="text-center">
+              <h1 class="display-3">Profil user</h1>
+              <table class="table table-bordered">
+                  <tbody>
+                      <tr>
+                          <th class="text-start">Nama:</th>
+                          <td class="text-start">{{ $user->first_name }} {{ $user->last_name }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Tanggal lahir:</th>
+                          <td class="text-start">{{ $user->tanggal_lahir }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Email:</th>
+                          <td class="text-start">{{ $user->email }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Membuat akun pada:</th>
+                          <td class="text-start">{{ date('Y-m-d', strtotime($user->created_at)) }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Upload sebanyak:</th>
+                          <td class="text-start">{{ $user->post()->count() }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="mt-4">
+                  <a href="/export" class="btn btn-primary btn-lg">Export Data</a>
+              </div>
+          </div>
+          
+            @endauth
         </div>
     </div> <br>
 
@@ -352,11 +386,11 @@
           </section>
       </footer>
 
-        <script src="{{ $TotalUser->cdn() }}"></script>
-        <script src="{{ $TotalUser2->cdn() }}"></script>
+        <script src="{{ $totalUser->cdn() }}"></script>
+        <script src="{{ $totalUser2->cdn() }}"></script>
 
-        {{ $TotalUser->script() }}
-        {{ $TotalUser2->script() }}
+        {{ $totalUser->script() }}
+        {{ $totalUser2->script() }}
         
 
 

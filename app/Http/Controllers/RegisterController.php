@@ -53,7 +53,7 @@ class RegisterController extends Controller
      * @param  \App\Http\Requests\StoreRegisterRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRegisterRequest $request)
+    public function store(Request $request)
     {
         $validasi = $request->validate([
             'first_name' => 'required|max:255',
@@ -102,7 +102,7 @@ class RegisterController extends Controller
      * @param  \App\Models\Register  $register
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRegisterRequest $request, Register $register)
+    public function update(Request $request, Register $register)
     {
         //
     }
