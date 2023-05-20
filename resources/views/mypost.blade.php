@@ -202,7 +202,9 @@
                 <li>
                     <a href="\">Home</a>
                 </li>
-                
+                <li>
+                    <a href="/docs">Docs</a>
+                  </li>
                 <li>
                     <a href="#" class="active">My Post</a>
                 </li>

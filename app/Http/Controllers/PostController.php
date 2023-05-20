@@ -9,6 +9,7 @@ use App\Charts\TotalUser2;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Auth\Events\Validated;
 use App\Http\Requests\StorePostRequest;
@@ -56,22 +57,27 @@ class PostController extends Controller
     public function docs(TotalUser $TotalUser, TotalUser2 $TotalUser2)
     {
         Paginator::useBootstrap();
-
+    
         return view('documentation')->with([
-            'TotalUser' => $TotalUser->build(),
-            'TotalUser2' => $TotalUser2->build(),
+            'totalUser' => $TotalUser->build(),
+            'totalUser2' => $TotalUser2->build(),
         ]);
     }
 
-    public function export(TotalUser $TotalUser, TotalUser2 $TotalUser2){
-        $TotalUser = $TotalUser->build();
-        $TotalUser2 = $TotalUser2->build();
-        $pdf = PDF::loadView('export', compact('TotalUser','TotalUser2'));
-        return $pdf->with([
-            'TotalUser' => $TotalUser->build(),
-            'TotalUser2' => $TotalUser2->build(),
-        ])->download('laporan-user.pdf');
+    // public function export(TotalUser $TotalUser, TotalUser2 $TotalUser2){
+    //     $totalUser = $TotalUser->build();
+    //     $totalUser2 = $TotalUser2->build();
+    //     $pdf = PDF::loadView('export', compact('totalUser','totalUser2'));
+    //     // return $pdf->download('laporan-user.pdf');
+    //     return $pdf->stream('invoice.pdf');
 
+        
+    // }
+
+    public function export(){
+        $data = Post::all();
+        $pdf = PDF::loadView('export', compact('data'));
+        return $pdf->stream('laporan-user.pdf');
     }
 
     /**
@@ -90,7 +96,7 @@ class PostController extends Controller
      * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
 
         $validasi = $request->validate([
@@ -157,7 +163,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
         $rules = [
             'title' => 'required|max:255',

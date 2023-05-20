@@ -17,14 +17,47 @@
   </head>
   <body>
 
+    @php( $user = auth()->user())
 
     <div class="containerinti"><br>
         <div class="h1 text-center" > 
-          <h1 class="display-3">Shounen Data</h1> 
+          <h1 class="display-3">{{ $user->first_name}} {{ $user->last_name }} Profil</h1> 
           <br>
           <div class="d-flex justify-content-center">
-            {!! $TotalUser->container() !!}
-            {!! $TotalUser2->container() !!}
+            {{-- {!! $totalUser->container() !!}
+            {!! $totalUser2->container() !!} --}}
+
+            <div class="text-center">
+              <h1 class="display-3">Profil user</h1>
+              <table class="table table-bordered">
+                  <tbody>
+                      <tr>
+                          <th class="text-start">Nama:</th>
+                          <td class="text-start">{{ $user->first_name }} {{ $user->last_name }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Tanggal lahir:</th>
+                          <td class="text-start">{{ $user->tanggal_lahir }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Email:</th>
+                          <td class="text-start">{{ $user->email }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Membuat akun pada:</th>
+                          <td class="text-start">{{ date('Y-m-d', strtotime($user->created_at)) }}</td>
+                      </tr>
+                      <tr>
+                          <th class="text-start">Upload sebanyak:</th>
+                          <td class="text-start">{{ $user->post()->count() }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          
+          </div>
+          
+
           </div>
           <br>       
         
@@ -32,12 +65,12 @@
     </div>
 
 
+{{-- 
+        <script src="{{ $totalUser->cdn() }}"></script>
+        <script src="{{ $totalUser2->cdn() }}"></script>
 
-        <script src="{{ $TotalUser->cdn() }}"></script>
-        <script src="{{ $TotalUser2->cdn() }}"></script>
-
-        {{ $TotalUser->script() }}
-        {{ $TotalUser2->script() }}
-        
+        {{ $totalUser->script() }}
+        {{ $totalUser2->script() }}
+         --}}
   </body>
 </html>
