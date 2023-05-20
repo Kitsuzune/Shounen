@@ -24,8 +24,7 @@
                     @enderror                   
                     </div>
                     <div class="mb-3">
-                      <label for="slug" class="form-label">Slug</label>
-                      <input type="text" class="form-control" id="slug" aria-describedby="emailHelp" name="slug" value="{{ $post->slug }}">                 
+                      <input type="text" class="form-control" id="slug" aria-describedby="emailHelp" name="slug" value="{{ $post->slug }}" hidden>                 
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">deskripsi</label>

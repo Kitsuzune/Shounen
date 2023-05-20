@@ -17,412 +17,351 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-    :root {
-    --font-main: "Plus Jakarta Sans";
-    --border-radius: 32px;
-    font-size: 10px;
-    }
+:root {
+--font-main: "Plus Jakarta Sans";
+--border-radius: 32px;
+font-size: 10px;
+}
 
-    body {
-      font-family: var(--font-main);
-      overflow-x: hidden;
-    }
-
-    
-.modal-dialog {
-        background-color: transparent;
-    }
-
-    .picture-thumbnail {
-        cursor: pointer;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .picture-container {
-        margin-right: 10px;
-    }
-    
-    .close-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 40px;
-        color: #fff;
-        opacity: 0.8;
-    }
-    
-    .modal-content {
-        position: relative;
-    }
-
-    .modal-lg {
-  max-width: 60%;
+body {
+  font-family: var(--font-main);
+  overflow-x: hidden;
 }
 
 
-.image-container {
-    float: left;
-    width: 50%;
-  }
-
-  .modal-dialog-centered {
-  display: flex;
-  align-items: center;
+.banner1 {
+  width: 70%;
+  height: 100%;
   justify-content: center;
-  height: 800px; /* Set the fixed height here */
 }
-.modal-body {
-    background: azure;
-    border-radius: 10px 10px 10px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 600px; /* Set the fixed height here */
-    overflow-y: auto;
-}
-#pictureModalImage {
-    max-height: 100%;
-    max-width: 80%;
-}
-.modal-body .col-md-8  {
-  overflow: auto;
-  max-height: 580px; /* Set the maximum height for the text container */
-}
-
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  padding-top: 100px; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.welcome-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-}
-
-.modal.show {
-  display: block;
-}
-
-
-.profilebox {
-    position: relative;
-    background: #ffffff;
-    min-height: 230px;
-    max-width: 700px;
-    width: calc(60% - 120px);
-    border-radius: 8px;
-    padding: 50px 20px 20px 100px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
-}
-.profpic {
-    position: absolute;
-    top: 20px;
-    left: -60px;
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    border: 4px solid #e1e1e1;
-    background: #22242a;
-    display: inline-block;
-    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
-}
-.prof-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 30px;
-    line-height: 30px;
-    width: 30px;
-    background: transparent;
-    outline: 0 none;
-    border: none;
-    border-radius: 50%;
-    font-size: 18pt;
-    color: rgba(255,255,255,.2);
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.15s ease-in-out;
-}
-.prof-close:active {
-    background: rgba(255,255,255,.02);
-    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
-}
-.prof-sm {
-    position: absolute;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    top: 152px;
-    left: -20px;
-    width: 40px;
-}
-.prof-sm .sm {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 4px;
-    border-radius: 50%;
-    background: #22242a;
-    transition: all 0.15s ease-in-out;
-    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
-}
-.prof-sm .sm:hover {
-    background: #26282E;
-}
-.prof-sm .sm:active {
-    background: #31343b;
-}
-.prof-sm a {
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-}
-.prof-sm svg {
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    border-radius: 50%;
-}
-.prof-sm path {
-    fill: rgba(255,255,255,.2);
-}
-.prof-name {
-    display: block;
-    margin: 0;
-    color: white;
-    font-weight: normal;
-    font-size: 20pt;
-}
-.prof-user {
-    display: block;
-    margin: 0;
-    color: rgba(255,255,255,.2);
-    font-weight: normal;
-    font-size: 11pt;
-}
-.user-tags {
-    margin: 20px 0 0 0;
-    padding: 0;
-    list-style: none;
-    cursor: default;
-}
-.user-tags .tag {
-    display: inline-block;
-    font-size: 8pt;
-    text-transform: lowercase;
-    color: rgba(255,255,255,.5);
-    background: rgba(255,255,255,.07);
-    height: 20px;
-    line-height: 20px;
-    padding: 0 10px;
-    border-radius: 10px;
-    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
-}
-.user-desc {
-    color: rgb(0, 0, 0);
-    font-size: 11pt;
-    line-height: 12pt;
-    flex: 1 0 auto;
-}
-
-    .banner1 {
-      width: 70%;
-      height: 100%;
-      justify-content: center;
-    }
 
 .containerinti {
-  height: auto;
-    background: #fefefe;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 10px 10px 10px 10px;
-    margin: 20px auto;
-    width: 90%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    box-sizing: border-box;
-    padding-bottom: 20px;
-    }
+height: auto;
+background: #fefefe;
+align-items: center;
+justify-content: space-between;
+border-radius: 10px 10px 10px 10px;
+margin: 20px auto;
+width: 90%;
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+box-sizing: border-box;
+padding-bottom: 20px;
+}
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -1rem -1rem;
-    padding-bottom: 3rem;
+display: flex;
+flex-wrap: wrap;
+margin: -1rem -1rem;
+padding-bottom: 3rem;
 }
 
 .gallery1 {
-  background: #EEE;
+background: #EEE;
 }
 
 .gallery1-cell {
-  width: 66%;
-  height: 200px;
-  margin-right: 10px;
-  background: #8C8;
-  counter-increment: gallery-cell;
+width: 66%;
+height: 200px;
+margin-right: 10px;
+background: #8C8;
+counter-increment: gallery-cell;
 }
 
 .gallery-item {
-    position: relative;
-    flex: 1 0 22rem;
-    margin: 1rem;
-    color: #fff;
-    cursor: pointer;
+position: relative;
+flex: 1 0 22rem;
+margin: 1rem;
+color: #fff;
+cursor: pointer;
 }
 
 .gallery-item:hover .gallery-item-info,
 .gallery-item:focus .gallery-item-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.3);
 }
 
 .gallery-item-info {
-    display: none;
+display: none;
 }
 
 .gallery-item-info li {
-    display: inline-block;
-    font-size: 1.7rem;
-    font-weight: 600;
+display: inline-block;
+font-size: 1.7rem;
+font-weight: 600;
 }
 
 .gallery-item-likes {
-    margin-right: 2.2rem;
+margin-right: 2.2rem;
 }
 
 .gallery-item-type {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2.5rem;
-    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+position: absolute;
+top: 1rem;
+right: 1rem;
+font-size: 2.5rem;
+text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
 
 .fa-clone,
 .fa-comment {
-    transform: rotateY(180deg);
+transform: rotateY(180deg);
 }
 
 .gallery-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+width: 100%;
+height: 100%;
+object-fit: cover;
 }
 
 
 .modal-dialog {
-        background-color: transparent;
-    }
+    background-color: transparent;
+}
 
-    .picture-thumbnail {
-        cursor: pointer;
-        max-width: 100%;
-        height: auto;
-    }
+.picture-thumbnail {
+    cursor: pointer;
+    max-width: 100%;
+    height: auto;
+}
 
-    .picture-container {
-        margin-right: 10px;
-    }
-    
-    .close-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 40px;
-        color: #fff;
-        opacity: 0.8;
-    }
-    
-    .modal-content {
-        position: relative;
-    }
+.picture-container {
+    margin-right: 10px;
+}
 
-    .modal-lg {
-  max-width: 60%;
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.modal-content {
+    position: relative;
+}
+
+.modal-lg {
+max-width: 60%;
 }
 
 
 .image-container {
-    float: left;
-    width: 50%;
-  }
+float: left;
+width: 50%;
+}
 
-  .modal-dialog-centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 800px; /* Set the fixed height here */
+.modal-dialog-centered {
+display: flex;
+align-items: center;
+justify-content: center;
+height: 800px; /* Set the fixed height here */
 }
 .modal-body {
-    background: azure;
-    border-radius: 10px 10px 10px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 600px; /* Set the fixed height here */
-    overflow-y: auto;
+background: azure;
+border-radius: 10px 10px 10px 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 600px; /* Set the fixed height here */
+overflow-y: auto;
 }
 #pictureModalImage {
-    max-height: 100%;
-    max-width: 80%;
+max-height: 100%;
+max-width: 80%;
 }
 .modal-body .col-md-8  {
-  overflow: auto;
-  max-height: 580px; /* Set the maximum height for the text container */
+overflow: auto;
+max-height: 580px; /* Set the maximum height for the text container */
 }
 
 
+/* ///////////////////////////// */
 
+.modal2 {
+display: none; 
+position: fixed; 
+z-index: 1; 
+padding-top: 100px; 
+left: 0;
+top: 0;
+width: 100%; 
+height: 100%; 
+overflow: auto; 
+background-color: rgb(0,0,0); 
+background-color: rgba(0,0,0,0.4); 
+}
+
+.modal2-content {
+background-color: #fefefe;
+margin: auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+}
+
+.close2 {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+.welcome-btn {
+background: none;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+}
+
+.modal2.show {
+display: block;
+}
+
+
+.profilebox {
+position: relative;
+background: #ffffff;
+min-height: 230px;
+max-width: 700px;
+width: calc(60% - 120px);
+border-radius: 8px;
+padding: 50px 20px 20px 100px;
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+display: flex;
+flex-direction: column;
+}
+.profpic {
+position: absolute;
+top: 20px;
+left: -60px;
+height: 120px;
+width: 120px;
+border-radius: 50%;
+border: 4px solid #e1e1e1;
+background: #22242a;
+display: inline-block;
+box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+.prof-close {
+position: absolute;
+top: 10px;
+right: 10px;
+height: 30px;
+line-height: 30px;
+width: 30px;
+background: transparent;
+outline: 0 none;
+border: none;
+border-radius: 50%;
+font-size: 18pt;
+color: rgba(255,255,255,.2);
+cursor: pointer;
+text-align: center;
+transition: all 0.15s ease-in-out;
+}
+.prof-close:active {
+background: rgba(255,255,255,.02);
+box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+.prof-sm {
+position: absolute;
+list-style: none;
+padding: 0;
+margin: 0;
+top: 152px;
+left: -20px;
+width: 40px;
+}
+.prof-sm .sm {
+width: 40px;
+height: 40px;
+margin-bottom: 4px;
+border-radius: 50%;
+background: #22242a;
+transition: all 0.15s ease-in-out;
+box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+.prof-sm .sm:hover {
+background: #26282E;
+}
+.prof-sm .sm:active {
+background: #31343b;
+}
+.prof-sm a {
+display: inline-block;
+height: 40px;
+width: 40px;
+border-radius: 50%;
+}
+.prof-sm svg {
+width: 30px;
+height: 30px;
+margin: 5px;
+border-radius: 50%;
+}
+.prof-sm path {
+fill: rgba(255,255,255,.2);
+}
+.prof-name {
+display: block;
+margin: 0;
+color: white;
+font-weight: normal;
+font-size: 20pt;
+}
+.prof-user {
+display: block;
+margin: 0;
+color: rgba(255,255,255,.2);
+font-weight: normal;
+font-size: 11pt;
+}
+.user-tags {
+margin: 20px 0 0 0;
+padding: 0;
+list-style: none;
+cursor: default;
+}
+.user-tags .tag {
+display: inline-block;
+font-size: 8pt;
+text-transform: lowercase;
+color: rgba(255,255,255,.5);
+background: rgba(255,255,255,.07);
+height: 20px;
+line-height: 20px;
+padding: 0 10px;
+border-radius: 10px;
+box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+.user-desc {
+color: rgb(0, 0, 0);
+font-size: 11pt;
+line-height: 12pt;
+flex: 1 0 auto;
+}
     </style>
 </head>
 <body>
@@ -481,12 +420,12 @@
 </header>
 @php( $user = auth()->user())
 
-<div id="myModal" class="modal">
-  <div class="modal-content profilebox">
+<div id="myModal" class="modal2">
+  <div class="modal2-content profilebox">
     
         <aside>
           <img class="profpic" src="https://cdn-icons-png.flaticon.com/512/219/219983.png?w=1480&t=st=1684563110~exp=1684563710~hmac=cffc5488f063ec0766d72e20a06ee0f3927e5e985314085446b51c2aee838d78" alt="profile picture" />
-          <span class="close">&times;</span>
+          <span class="close2">&times;</span>
 
         </aside>
         <main class="user-desc">
@@ -524,7 +463,6 @@
 
   </div>
 </div>
-
 
   @else
   <header>

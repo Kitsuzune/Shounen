@@ -187,7 +187,10 @@
   max-height: 580px; /* Set the maximum height for the text container */
 }
 
-.modal {
+
+/* ///////////////////////////// */
+
+.modal2 {
   display: none; 
   position: fixed; 
   z-index: 1; 
@@ -201,7 +204,7 @@
   background-color: rgba(0,0,0,0.4); 
 }
 
-.modal-content {
+.modal2-content {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -209,7 +212,7 @@
   width: 80%;
 }
 
-.close {
+.close2 {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -232,7 +235,7 @@
   outline: inherit;
 }
 
-.modal.show {
+.modal2.show {
   display: block;
 }
 
@@ -419,12 +422,12 @@
   </header>
   @php( $user = auth()->user())
 
-  <div id="myModal" class="modal">
-    <div class="modal-content profilebox">
+  <div id="myModal" class="modal2">
+    <div class="modal2-content profilebox">
       
           <aside>
             <img class="profpic" src="https://cdn-icons-png.flaticon.com/512/219/219983.png?w=1480&t=st=1684563110~exp=1684563710~hmac=cffc5488f063ec0766d72e20a06ee0f3927e5e985314085446b51c2aee838d78" alt="profile picture" />
-            <span class="close">&times;</span>
+            <span class="close2">&times;</span>
 
           </aside>
           <main class="user-desc">
@@ -585,7 +588,7 @@
         <script>
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("welcomeBack");
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("close2")[0];
 
 btn.onclick = function() {
   modal.classList.add("show");

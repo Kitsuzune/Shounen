@@ -93,8 +93,7 @@
         <div class="text-danger">{{ $message }}</div>   
         @enderror    
 
-        <p>Slug</p>
-        <input type="text" class="email input" name="slug" placeholder="あなたのタグは何ですか...?" id="slug">
+        <input type="text" class="email input" name="slug" placeholder="あなたのタグは何ですか...?" id="slug" hidden>
         
         <p>Deskripsi</p>
         <input type="text" class="email input" name="deskripsi" placeholder="あなたの説明は何ですか...?">
