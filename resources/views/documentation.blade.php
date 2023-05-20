@@ -375,15 +375,15 @@
       <input type="checkbox" id="nav_check" hidden>
       <nav>
           <div class="logo">
-              <img src="logo.png" alt="">
+              <img src="" alt="">
           </div>
           <ul>
               <li>
-                  <a href="\">Home</a>
+                  <a href="\home">Home</a>
               </li>
               
               <li>
-                <a href="\docs"  class="active">Docs</a>
+                <a href="#"  class="active">Docs</a>
               </li>
 
               <li>
@@ -472,15 +472,15 @@
       <input type="checkbox" id="nav_check" hidden>
       <nav>
           <div class="logo">
-              <img src="logo.png" alt="">
+              <img src="" alt="">
           </div>
           <ul>
               <li>
-                  <a href="#" >Home</a>
+                  <a href="/" >Home</a>
               </li>
 
               <li>
-                <a href="/docs" class="active">Docs</a>
+                <a href="#" class="active">Docs</a>
               </li>
 
               <li>

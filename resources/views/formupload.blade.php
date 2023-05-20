@@ -39,7 +39,7 @@
           </div>
           <ul>
               <li>
-                  <a href="#" class="active">Home</a>
+                  <a href="/home" class="active">Home</a>
               </li>
               
               <li>
