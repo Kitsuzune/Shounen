@@ -130,7 +130,7 @@ class PostController extends Controller
         
 
 
-        return Redirect::back();
+        return Redirect::to('/user/post');
 
     }
 

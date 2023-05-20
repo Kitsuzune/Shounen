@@ -627,7 +627,7 @@ flex: 1 0 auto;
         <script>
           var modal = document.getElementById("myModal");
           var btn = document.getElementById("welcomeBack");
-          var span = document.getElementsByClassName("close")[0];
+          var span = document.getElementsByClassName("close2")[0];
       
           btn.onclick = function() {
            modal.classList.add("show");
