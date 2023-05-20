@@ -53,9 +53,6 @@
                       </tr>
                   </tbody>
               </table>
-              <div class="mt-4">
-                  <a href="/export" class="btn btn-primary btn-lg">Export Data</a>
-              </div>
           </div>
           
           </div>
