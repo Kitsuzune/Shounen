@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarousellController;
 use App\Models\Post;
 use App\Models\User;
 use App\Http\Controllers\RegisterController;
@@ -67,19 +68,16 @@ Route::post('/logout',[RegisterController::class,'logout']);
 
 // For Admin
 Route::group(['middleware' => ['auth', 'admin:admin']], function () {
-    // Route::get('/dashboard', function () {
-    //     $countpost = Post::count();
-    //     $countuser = User::count();
-    //     return view('layout/admin',[
-    //         'countpost' => $countpost,
-    //         'countuser' => $countuser,
-    //     ]);
-    // });
+
 
     Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard');
     Route::get('/dashboard/postmanagement', [AdminController::class,'postmgmt'])->name('postmgmt');
     Route::get('/dashboard/usermanagement', [AdminController::class,'usermgmt'])->name('usermgmt');
-    Route::get('/dashboard/carousell', [AdminController::class,'carousell'])->name('carousell');
+    Route::get('/dashboard/carousell', [CarousellController::class,'index'])->name('index');
+    Route::get('/dashboard/carousell/create', [CarousellController::class,'upload'])->name('upload');
+    Route::post('/dashboard/carousell/create', [CarousellController::class,'store'])->name('store');
+    Route::get('/dashboard/carousell/slug',[PostController::class,'buatslug']);
+
 
     Route::delete('/dashboard/post/{id}', [AdminController::class,'destroypost'])->name('post.delete');
     Route::delete('/dashboard/user/{id}', [AdminController::class,'destroyuser'])->name('user.delete');
@@ -88,6 +86,10 @@ Route::group(['middleware' => ['auth', 'admin:admin']], function () {
     Route::put('/dashboard/post/{id}', [AdminController::class,'updatepost'])->name('post.update');
     Route::get('/dashboard/user/{id}/edit', [AdminController::class,'edituser'])->name('user.edit');
     Route::put('/dashboard/user/{id}', [AdminController::class,'updateuser'])->name('user.update');
+    Route::post('/dashboard/carousell/{carousell:slug}/delete',[CarousellController::class,'destroy']);
+    Route::get('/dashboard/carousell/{carousell:slug}/edit',[CarousellController::class,'edittampil']);
+    Route::post('/dashboard/carousell/{carousell:slug}/edit',[CarousellController::class,'update']);
+
 });
 
 

@@ -538,9 +538,12 @@
                   
                     
                     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                  </form>
-            </div>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
 
+                  </form>
+                  
+            </div>
+            
               <br>
               <div>
               </div>            
