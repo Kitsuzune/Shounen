@@ -124,7 +124,7 @@
     </div>
 
     @if(Session::has('hasil'))
-          {{-- here  --}}
+          {{--  monyet lah --}}
     @endif
 
 
