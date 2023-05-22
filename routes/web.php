@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\Post;
+use App\Models\User;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -54,9 +57,41 @@ Route::get('login', function () {
     return view('login');
 })->middleware('guest');
 
+
+
 Route::post('/register',[RegisterController::class,'store']);
 Route::post('/login',[RegisterController::class,'index']);
 Route::post('/logout',[RegisterController::class,'logout']);
 
 
 
+// For Admin
+Route::group(['middleware' => ['auth', 'admin:admin']], function () {
+    // Route::get('/dashboard', function () {
+    //     $countpost = Post::count();
+    //     $countuser = User::count();
+    //     return view('layout/admin',[
+    //         'countpost' => $countpost,
+    //         'countuser' => $countuser,
+    //     ]);
+    // });
+
+    Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard');
+    Route::get('/dashboard/postmanagement', [AdminController::class,'postmgmt'])->name('postmgmt');
+    Route::get('/dashboard/usermanagement', [AdminController::class,'usermgmt'])->name('usermgmt');
+    Route::get('/dashboard/carousell', [AdminController::class,'carousell'])->name('carousell');
+
+    Route::delete('/dashboard/post/{id}', [AdminController::class,'destroypost'])->name('post.delete');
+    Route::delete('/dashboard/user/{id}', [AdminController::class,'destroyuser'])->name('user.delete');
+
+    Route::get('/dashboard/post/{id}/edit', [AdminController::class,'editpost'])->name('post.edit');
+    Route::put('/dashboard/post/{id}', [AdminController::class,'updatepost'])->name('post.update');
+    Route::get('/dashboard/user/{id}/edit', [AdminController::class,'edituser'])->name('user.edit');
+    Route::put('/dashboard/user/{id}', [AdminController::class,'updateuser'])->name('user.update');
+});
+
+
+
+
+
+    

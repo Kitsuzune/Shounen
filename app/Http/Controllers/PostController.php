@@ -64,15 +64,7 @@ class PostController extends Controller
         ]);
     }
 
-    // public function export(TotalUser $TotalUser, TotalUser2 $TotalUser2){
-    //     $totalUser = $TotalUser->build();
-    //     $totalUser2 = $TotalUser2->build();
-    //     $pdf = PDF::loadView('export', compact('totalUser','totalUser2'));
-    //     // return $pdf->download('laporan-user.pdf');
-    //     return $pdf->stream('invoice.pdf');
 
-        
-    // }
 
     public function export(){
         $data = Post::all();
@@ -185,6 +177,11 @@ class PostController extends Controller
         return redirect('/user/post');
 
         
+    }
+
+    public function countpost(){
+        $count = Post::count();
+        return view('layout/admin', compact('count'));
     }
 
     /**

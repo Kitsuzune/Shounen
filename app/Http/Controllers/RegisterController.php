@@ -28,6 +28,11 @@ class RegisterController extends Controller
 
         if(Auth::attempt($validasi)){
             $request->session()->regenerate();
+
+            if(auth()->user()->roles == 'admin'){
+                return redirect()->intended('/dashboard');
+            }
+
             return redirect()->intended('/');
         }
 
@@ -36,6 +41,8 @@ class RegisterController extends Controller
         ]);
 
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -64,6 +71,7 @@ class RegisterController extends Controller
         ]);
 
         $validasi['password'] = Hash::make($validasi['password']);
+        $validasi['roles'] = 'user';
 
         Session::flash('hasil','berhasil');
         
