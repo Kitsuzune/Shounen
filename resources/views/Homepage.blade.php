@@ -511,9 +511,9 @@
             <h1 class="display-3">Latest Event</h1> 
             <br>
             <div class="gallery1 js-flickity" data-flickity-options='{ "wrapAround": true }'>
-            @foreach($carousells as $carousell)
-            <div class="gallery1-cell"><img class="banner" src="{{ asset('storage/'.$carousell->image_path) }}" alt=""></div>
-            @endforeach
+                @foreach($carousells as $carousell)
+                   <div class="gallery1-cell"><img class="banner" src="{{ asset('storage/'.$carousell->image_path) }}" alt=""></div>
+                @endforeach
             </div>
             
           </div> <br>

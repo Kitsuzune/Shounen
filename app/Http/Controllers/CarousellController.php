@@ -83,8 +83,6 @@ class CarousellController extends Controller
         
         // post::create($validasi);
 
-        
-
 
         return Redirect::to('dashboard/carousell');
     }

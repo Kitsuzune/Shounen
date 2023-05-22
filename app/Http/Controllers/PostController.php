@@ -50,7 +50,8 @@ class PostController extends Controller
         Paginator::useBootstrap();
 
         return view('Homepage')->with([
-            'posts' => Post::paginate(9),
+            // 'posts' => Post::paginate(9),
+            'posts' => Post::inrandomorder()->paginate(9),
             'TotalUser' => $TotalUser->build(),
             'TotalUser2' => $TotalUser2->build(),
             'carousells' => Carousell::all(),

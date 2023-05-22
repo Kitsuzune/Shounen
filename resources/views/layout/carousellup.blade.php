@@ -180,8 +180,14 @@
                     @enderror    
                     </div>
 
-                    <input type="text" class="email input" name="slug" placeholder="slug" id="slug" hidden>
-                    
+                    <div class="mb-3">
+                    <label for="title" class="form-label">Slug</label>
+                    <input type="text" class="form-control" name="slug" placeholder="slug" id="slug" readonly>
+                    @error('slug')
+                    <div class="text-danger">{{ $message }}</div>   
+                    @enderror 
+                    </div>
+
                     <p>Image</p>
                     <input type="file" id="formFile" name="image">
                     @error('image')
