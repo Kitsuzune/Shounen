@@ -25,9 +25,6 @@
   <link rel="stylesheet" href="{{ asset('LTE/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('LTE/plugins/summernote/summernote-bs4.min.css') }}">
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -107,7 +104,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="/dashboard/postmanagement" class="nav-link ">
               <i class="nav-icon fas fa-cube"></i>
               <p>
                 Post Management
@@ -116,7 +113,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="/dashboard/carousell" class="nav-link ">
+            <a href="pages/widgets.html" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 TBA
@@ -149,7 +146,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Post Management</h1>
+            <h1 class="m-0">Carousell</h1>
             @if (session('success'))
             <div class="alert alert-success">
             {{ session('success') }}
@@ -160,7 +157,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item"><a href="/dashboard">Admin Menu Dashboard Shounen V 0.1 Beta</a></li>
-              <li class="breadcrumb-item active">Post</li>
+              <li class="breadcrumb-item active">TBA</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -170,88 +167,42 @@
 
     <!-- Main content -->
     <section class="content">
-      
-        <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">エントリーテーブル</h3>
-  
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
 
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-        
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-                      
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="POST" enctype="multipart/form-data" action="/dashboard/carousell/create">
+                    @csrf
+                    <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Title" id="email">
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>   
+                    @enderror    
                     </div>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                
-                <!-- /.card-body -->
-                <br>                
-                <div class="col-12">
-                    <div class="card">
-                      <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
-                          <thead>
-                            <tr>
-                              <th>ID</th>
-                              <th>User</th>
-                              <th>User_ID</th>
-                              <th>Title</th>
-                              <th>Slug</th>
-                              <th>Deskripsi</th>
-                              <th>Created At</th>
-                              <th>Updated At</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                              @foreach ($posts as $post)
-                            <tr>
-                              <td>{{ $post->id }}</td>
-                              <td>{{ $post->User->first_name}} {{ $post->User->last_name}}</td>
-                              <td>{{ $post->user_id }}</td>
-                              <td>{{ $post->title }}</td>
-                              <td>{{ $post->slug }}</td>
-                              <td>{{ $post->deskripsi }}</td>
-                              <td>{{ $post->created_at }}</td>
-                              <td>{{ $post->updated_at }}</td>
-                              <td> 
-                                  <a href="/dashboard/post/{{ $post->id }}/edit" class="btn btn-warning"><i class="fas fa-pen"></i> Edit</a>
-                                  <form action="/dashboard/post/{{ $post->id }}" method="POST" class="d-inline">
-                                      @method('delete')
-                                      @csrf
-                                      <button type="submit" class="btn btn-danger " onclick="return confirm('yakin?')"><i class="fas fa-trash"></i> Delete</button>
-                                  </form>
-                              </td>
-                            </tr>
-                               @endforeach
-                          </tbody>
-                        </table>
+
+                    <input type="text" class="email input" name="slug" placeholder="slug" id="slug" hidden>
+                    
+                    <p>Image</p>
+                    <input type="file" id="formFile" name="image">
+                    @error('image')
+                    <div class="text-danger">{{ $message }}</div>   
+                    @enderror 
+                    <br>
+                    <br>
+                    <div class="mb-3"> 
+                        <button class="btn btn-primary" type="submit">
+                        Submit
+                        </button>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
                       </div>
-                      <div class="card-footer">
-        
-                        <div class="card-tools">
-                          <div class="input-group input-group-sm" style="width: 150px;">
-      
-                            <div> {{ $posts->links() }} </div>
-                            
-                          </div>
-                        </div>
-                      </div>
-              </div>
-              <!-- /.card -->
+
+
             </div>
-          </div>
-         
-    </section>
+        </div>
+
+        
+       
+  </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -305,17 +256,17 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('LTE/dist/js/pages/dashboard.js') }}"></script>
 
+<script src="{{ asset('/js/form.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 <script>
-  $(document).ready(function() {
-    // Activate the table search
-    $('[name="table_search"]').on('keyup', function() {
-      var searchText = $(this).val().toLowerCase();
-      $('table tbody tr').filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
-      });
-    });
-  });
-</script>
 
+  const title = document.querySelector('#email');
+  const slug = document.querySelector('#slug')
+  
+  title.addEventListener('change', function() {
+    fetch('/dashboard/carousell/slug?title=' + title.value).then(response => response.json()).then(data => slug.value = data.slug)
+  });
+
+  </script>
 </body>
 </html>

@@ -10,7 +10,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ asset('/css/navfo.css') }}">
     <script src="{{ asset('/js/form.js') }}"></script>
-
 </head>
 <body>
   <header>
@@ -112,7 +111,7 @@
             </button>
           </div>
       </form>
-      
+
     </div>
     <div class="leafs">
       <div class="leaf leaf1"></div>
@@ -123,6 +122,11 @@
       <div class="leaf leaf5"></div>
       <div class="leaf leaf6"></div>
     </div>
+
+    @if(Session::has('hasil'))
+          {{-- here  --}}
+    @endif
+
 
     <script src="{{ asset('/js/form.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
@@ -136,6 +140,7 @@
       });
 
       </script>
+     
 
     
 </body>

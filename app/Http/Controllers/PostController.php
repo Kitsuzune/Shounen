@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Models\Post;
+// use Barryvdh\DomPDF\PDF;
 use App\Charts\TotalUser;
+use App\Models\Carousell;
 use App\Charts\TotalUser2;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -51,6 +53,7 @@ class PostController extends Controller
             'posts' => Post::paginate(9),
             'TotalUser' => $TotalUser->build(),
             'TotalUser2' => $TotalUser2->build(),
+            'carousells' => Carousell::all(),
         ]);
     }
 
@@ -123,6 +126,7 @@ class PostController extends Controller
 
 
         return Redirect::to('/user/post');
+        // return Redirect::back();
 
     }
 

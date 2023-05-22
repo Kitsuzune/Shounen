@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="{{ asset('LTE/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('LTE/plugins/summernote/summernote-bs4.min.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -188,46 +190,47 @@
                   </div>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Roles</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                      <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->roles }}</td>
-                        <td>{{ $user->tanggal_lahir }}</td>
-                        <td>{{ $user->created_at }}</td>
-                        <td>{{ $user->updated_at }}</td>
-                        <td> 
-                            <a href="/dashboard/user/{{ $user->id }}/edit" class="btn btn-warning"><i class="fas fa-pen"></i> Edit</a>
-                            <form action="/dashboard/user/{{ $user->id }}" method="POST" class="d-inline">
-                              @method('delete')
-                              @csrf
-                              <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
-                            </form>
-                        </td>
-                      </tr>
-                         @endforeach
-                    </tbody>
-                  </table>
-                </div>
+                <br>
                 <!-- /.card-body -->
                 <div class="col-12">
                     <div class="card">
+                      <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Username</th>
+                              <th>Email</th>
+                              <th>Roles</th>
+                              <th>Tanggal Lahir</th>
+                              <th>Created At</th>
+                              <th>Updated At</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach ($users as $user)
+                            <tr>
+                              <td>{{ $user->id }}</td>
+                              <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                              <td>{{ $user->email }}</td>
+                              <td>{{ $user->roles }}</td>
+                              <td>{{ $user->tanggal_lahir }}</td>
+                              <td>{{ $user->created_at }}</td>
+                              <td>{{ $user->updated_at }}</td>
+                              <td> 
+                                  <a href="/dashboard/user/{{ $user->id }}/edit" class="btn btn-warning"><i class="fas fa-pen"></i> Edit</a>
+                                  <form action="/dashboard/user/{{ $user->id }}" method="POST" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('yakin?')"><i class="fas fa-trash"></i> Delete</button>
+                                  </form>
+                              </td>
+                            </tr>
+                               @endforeach
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="card-footer">
         
                         <div class="card-tools">
@@ -297,5 +300,16 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('LTE/dist/js/pages/dashboard.js') }}"></script>
 
+<script>
+  $(document).ready(function() {
+    // Activate the table search
+    $('[name="table_search"]').on('keyup', function() {
+      var searchText = $(this).val().toLowerCase();
+      $('table tbody tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+      });
+    });
+  });
+</script>
 </body>
 </html>

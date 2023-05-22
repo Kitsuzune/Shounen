@@ -142,10 +142,10 @@ class AdminController extends Controller
         return redirect()->route('usermgmt')->with('success', 'Post has been updated');
     }
 
-    public function carousell()
-    {
-        return view('layout.carousell');
-    }
+    // public function carousell()
+    // {
+    //     return view('layout.carousell');
+    // }
 
 
 

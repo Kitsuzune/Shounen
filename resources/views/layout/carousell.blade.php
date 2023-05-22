@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="{{ asset('LTE/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('LTE/plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -113,7 +116,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link active">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 TBA
@@ -168,9 +171,80 @@
     <!-- Main content -->
     <section class="content">
       
-    <h1 class="text-center">TO BE ADDED</h1>
+      <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">エントリーテーブル</h3>
 
-    </section>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+      
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              
+              <!-- /.card-body -->
+              <br>
+
+              <div class="col-12">
+                
+                  <div class="card">
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-hover text-nowrap">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($carousells as $carousell)
+                          <tr>
+                            <td>{{ $carousell->id }}</td>
+                            <td>{{ $carousell->title }}</td>
+                            <td><img src="{{ asset('storage/' . $carousell->image_path) }}" alt="" style="width: 150px"></td>
+                          
+                            <td> 
+                                <a href="/dashboard/carousell/{{ $carousell->slug }}/edit" class="btn btn-warning"><i class="fas fa-pen"></i> Edit</a>
+                                <form action="/dashboard/carousell/{{ $carousell->slug }}/delete" method="POST" class="d-inline">
+                                  @csrf
+                                  <button type="submit" class="btn btn-danger" onclick="return confirm('yakin?')"><i class="fas fa-trash" ></i> Delete</button>
+                                </form>
+                            </td>
+                          </tr>
+                             @endforeach
+                        </tbody>
+                      </table>
+                     
+                    </div>
+                    <div class="card-footer">
+                      <a href="/dashboard/carousell/create" class="btn btn-primary"><i class="fas fa-upload"></i>Upload</a>
+
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+    
+                          
+                        </div>
+                      </div>
+                    </div>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+       
+  </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -223,6 +297,19 @@
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('LTE/dist/js/pages/dashboard.js') }}"></script>
+
+<script>
+  $(document).ready(function() {
+    // Activate the table search
+    $('[name="table_search"]').on('keyup', function() {
+      var searchText = $(this).val().toLowerCase();
+      $('table tbody tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+      });
+    });
+  });
+</script>
+
 
 </body>
 </html>

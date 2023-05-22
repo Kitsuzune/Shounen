@@ -25,9 +25,6 @@
   <link rel="stylesheet" href="{{ asset('LTE/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('LTE/plugins/summernote/summernote-bs4.min.css') }}">
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -171,86 +168,55 @@
     <!-- Main content -->
     <section class="content">
       
-        <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">エントリーテーブル</h3>
-  
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-        
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                
-                <!-- /.card-body -->
-                <br>                
-                <div class="col-12">
-                    <div class="card">
-                      <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
-                          <thead>
-                            <tr>
-                              <th>ID</th>
-                              <th>User</th>
-                              <th>User_ID</th>
-                              <th>Title</th>
-                              <th>Slug</th>
-                              <th>Deskripsi</th>
-                              <th>Created At</th>
-                              <th>Updated At</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                              @foreach ($posts as $post)
-                            <tr>
-                              <td>{{ $post->id }}</td>
-                              <td>{{ $post->User->first_name}} {{ $post->User->last_name}}</td>
-                              <td>{{ $post->user_id }}</td>
-                              <td>{{ $post->title }}</td>
-                              <td>{{ $post->slug }}</td>
-                              <td>{{ $post->deskripsi }}</td>
-                              <td>{{ $post->created_at }}</td>
-                              <td>{{ $post->updated_at }}</td>
-                              <td> 
-                                  <a href="/dashboard/post/{{ $post->id }}/edit" class="btn btn-warning"><i class="fas fa-pen"></i> Edit</a>
-                                  <form action="/dashboard/post/{{ $post->id }}" method="POST" class="d-inline">
-                                      @method('delete')
-                                      @csrf
-                                      <button type="submit" class="btn btn-danger " onclick="return confirm('yakin?')"><i class="fas fa-trash"></i> Delete</button>
-                                  </form>
-                              </td>
-                            </tr>
-                               @endforeach
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="card-footer">
-        
-                        <div class="card-tools">
-                          <div class="input-group input-group-sm" style="width: 150px;">
-      
-                            <div> {{ $posts->links() }} </div>
-                            
-                          </div>
-                        </div>
-                      </div>
-              </div>
-              <!-- /.card -->
+        {{-- <form action="{{ route('post.update', $post->id) }}" method="POST">
+            @method('put')
+            @csrf
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" class="form-control" value="{{ $post->title }}">
             </div>
-          </div>
-         
+            <div class="form-group">
+                <label for="slug">Slug</label>
+                <input type="text" name="slug" id="slug" class="form-control" value="{{ $post->slug }}">
+            </div>
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi</label>
+                <textarea name="deskripsi" id="deskripsi" class="form-control">{{ $post->deskripsi }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form> --}}
+
+{{-- /////////////////////////////////////////////////// --}}
+
+<div class="container"><br>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <img src="{{ asset('storage/'. $carousell->image_path) }}" alt="{{ $carousell->title }}" class="img-fluid" style="max-height: 500px; max-width: 500px">
+        </div>
+    </div> <br>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="POST" enctype="multipart/form-data" action="/dashboard/carousell/{{$carousell->slug}}/edit">
+                @csrf
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ $carousell->title }}">
+                    @error('title')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <input type="hidden" name="slug" value="{{ $carousell->slug }}">
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
     </section>
     <!-- /.content -->
   </div>
@@ -304,18 +270,6 @@
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('LTE/dist/js/pages/dashboard.js') }}"></script>
-
-<script>
-  $(document).ready(function() {
-    // Activate the table search
-    $('[name="table_search"]').on('keyup', function() {
-      var searchText = $(this).val().toLowerCase();
-      $('table tbody tr').filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
-      });
-    });
-  });
-</script>
 
 </body>
 </html>

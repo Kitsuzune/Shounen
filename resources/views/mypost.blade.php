@@ -378,10 +378,15 @@ flex: 1 0 auto;
         align-items: center;
       }
       
-      /* Button hover effect */
-      .rebutton:hover {
-        background-color: #3e8e41;
-      }
+
+  .btn.btn-primary {
+    font-size: 1.2em; /* Adjust the size as needed */
+    padding: 10px 20px; /* Adjust the padding as needed */
+  }
+  .btn.btn-danger {
+    font-size: 1.2em; /* Adjust the size as needed */
+    padding: 10px 20px; /* Adjust the padding as needed */
+  }
     </style>
 </head>
 
@@ -570,11 +575,12 @@ flex: 1 0 auto;
                     <div>
                         <form action="/user/post/{{ $post->slug }}/delete" method="post">
                             @csrf
-                        <button class="rebutton" type="submit" onclick="return confirm('yakin?')">hapus</button>
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('yakin?')">hapus</button>
                         </form>
                     </div>
+                    <br>
                     <div>
-                        <a href="/user/post/{{ $post->slug }}/edit" class="rebutton">edit</a>
+                        <a href="/user/post/{{ $post->slug }}/edit" class="btn btn-primary">edit</a>
                     </div>
                 </div>
               
