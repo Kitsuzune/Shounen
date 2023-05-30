@@ -26,6 +26,10 @@ Route::get('/',[PostController::class,'index']);
 Route::get('/search',[PostController::class,'search']);
 Route::get('/home',[PostController::class,'index']);
 Route::get('/docs',[PostController::class,'docs']);
+Route::get('/block',[AdminController::class,'block'])->middleware('auth');
+Route::post('/blockupload', [AdminController::class, 'blockupload'])->middleware('auth');
+Route::get('/leaderboard',[AdminController::class,'leaderboard']);
+
 
 Route::get('/up2', function () {
     return view('formupload2');
@@ -56,7 +60,7 @@ Route::post('/user/post/{post:slug}/edit',[PostController::class,'update'])->mid
 
 Route::get('login', function () {
     return view('login');
-})->middleware('guest');
+})->middleware('guest')->name('login');
 
 
 

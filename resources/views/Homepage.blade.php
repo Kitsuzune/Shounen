@@ -559,6 +559,16 @@
         
         </div>
         </div>
+
+        <div class="containerinti">
+          <br>
+          <div class="d-flex justify-content-center align-items-center">
+            <div>
+              <a href="/block" class="btn btn-primary btn-lg">Click Here To Get something Fun</a>
+            </div>
+          </div>
+        </div>
+
         <footer>
           {{-- <div class="footer-left">
               <h3>Shounen</h3>

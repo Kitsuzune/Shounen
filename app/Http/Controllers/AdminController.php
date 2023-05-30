@@ -11,13 +11,40 @@ use Illuminate\Pagination\Paginator;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Register;
+use App\Models\Leaderboard;
 
 
 
 class AdminController extends Controller
 {
     
+    public function block(Request $request)
+    {
+        return view('game.game', [
+            
+        ]);
+    }
 
+    public function blockupload(Request $request)
+    {
+
+        $score = $request->input('score');
+        $user_id = $request->input('user_id');
+        Leaderboard::create(['score' => $score, 'user_id' => $user_id]);
+
+    }
+
+    public function leaderboard()
+    {
+        Paginator::useBootstrap();
+        $users = User::latest()->get();
+        $leaderboard = Leaderboard::with('User')->orderBy('score', 'desc')->get();
+
+        return view('game.leaderboard', [
+            'users' => $users,
+            'leaderboard' => $leaderboard,
+        ]);
+    }
 
     public function docs(TotalUser $TotalUser, TotalUser2Compact $TotalUser2Compact)
     {

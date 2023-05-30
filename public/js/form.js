@@ -68,17 +68,17 @@ function show() {
 
 $(".button").on("click", function(){
   resetEyes()
-  if(!validate()){
-    $(".pokemon").addClass("mad");
-    $(".pokemon, .f").css("background-color","#d9aa78");
-    $(".email").css("border-color","#e74c3c");
+  // if(!validate()){
+  //   $(".pokemon").addClass("mad");
+  //   $(".pokemon, .f").css("background-color","#d9aa78");
+  //   $(".email").css("border-color","#e74c3c");
     
-    setTimeout(function(){ 
-    $(".pokemon").removeClass("mad");
-    $(".pokemon, .f").css("background-color","#78d9ad");
-    $(".email").css("border-color","#b8e994");
-     }, 300);
-  }else{
+  //   setTimeout(function(){ 
+  //   $(".pokemon").removeClass("mad");
+  //   $(".pokemon, .f").css("background-color","#78d9ad");
+  //   $(".email").css("border-color","#b8e994");
+  //    }, 300);
+  // }else{
     $(".mouth").css("height","38px");
     $(".button").fadeOut("fast");
     $("input").fadeOut("fast");
